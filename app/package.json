@@ -1,0 +1,45 @@
+{
+  "name": "webview-app",
+  "version": "0.0.1",
+  "description": "WebView JavaScript application",
+  "main": "dist/app.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "sass": "sass --no-source-map --style=compressed src:dist",
+    "build": "npm run compile && npm run sass",
+    "lint": "eslint . --ext .ts,.tsx",
+    "watch": "tsc -watch -p ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuxy/go-webview-app-builder.git"
+  },
+  "keywords": [
+    "javascript",
+    "aurelia",
+    "webview",
+    "application",
+    "desktop"
+  ],
+  "bugs": {
+    "url": "https://github.com/nuxy/go-webview-app-builder/issues"
+  },
+  "homepage": "https://github.com/nuxy/go-webview-app-builder#readme",
+  "author": "Marc S. Brooks <devel@mbrooks.info> (https://mbrooks.info)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.27.0",
+    "sass": "^1.72.0",
+    "typescript": "^5.4.3"
+  },
+  "overrides": {
+    "braces": "3.0.0",
+    "glob-parent": "^6.0.0",
+    "got": "^12.0.0",
+    "minimist": "^1.2.6"
+  }
+}
