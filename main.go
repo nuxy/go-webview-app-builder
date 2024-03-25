@@ -15,9 +15,13 @@ func main() {
 	cssRules := lib.ReadFile("app/dist/app.css")
 	cssRules = strings.TrimSpace(cssRules)
 
+	jsModules := lib.ReadFile("app/dist/app.js")
+	jsModules = strings.TrimSpace(jsModules)
+
 	vars := lib.TmplVars{
 		Title: "WebView App",
-		CSS: cssRules,
+		CSS: lib.EncodeData(cssRules, "text/css"),
+		JS: lib.EncodeData(jsModules, "text/javascript"),
 	}
 
 	markup := lib.ReadHtml("app/main.tmpl", vars)

@@ -12,7 +12,8 @@ import (
 //
 type TmplVars struct {
 	Title string
-	CSS string
+	CSS   string
+	JS    string
 }
 
 /**
