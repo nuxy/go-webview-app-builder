@@ -11,6 +11,7 @@ import (
 // Template declared data types.
 //
 type TmplVars struct {
+	Title string
 	CSS string
 }
 

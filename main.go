@@ -16,14 +16,15 @@ func main() {
 	cssRules = strings.TrimSpace(cssRules)
 
 	vars := lib.TmplVars{
+		Title: "WebView App",
 		CSS: cssRules,
-    }
+	}
 
 	markup := lib.ReadHtml("app/main.tmpl", vars)
 
 	w := webview.New(false)
 	defer w.Destroy()
-	w.SetTitle("WebView App")
+	w.SetTitle(vars.Title)
 	w.SetSize(480, 320, webview.HintNone)
 	w.SetHtml(markup)
 	w.Run()
