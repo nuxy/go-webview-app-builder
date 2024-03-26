@@ -1,6 +1,6 @@
 # WebView App Builder
 
-Create a JavaScript application in a [WebView](https://en.wikipedia.org/wiki/WebView). :warning: Work In Progress :warning:
+Create a [Aurelia](https://aurelia.io) JavaScript application in a [WebView](https://en.wikipedia.org/wiki/WebView). :warning: Work In Progress :warning:
 
 ## Dependencies
 
@@ -31,7 +31,7 @@ Install the [Node.js](https://nodejs.org) application dependencies using [NPM](h
 
     $ make install-app
 
-Transpile ES2021 sources (using [TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)) and minify to a distribution:
+Transpile ES2017 sources (using [TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)) and minify to a distribution:
 
     $ make build-app
 

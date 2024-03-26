@@ -1,13 +1,21 @@
 {
   "compilerOptions": {
-    "module": "umd",
-    "target": "es2021",
-    "lib": ["dom", "es2021"],
-    "rootDir": "src",
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": true,
-    "noUnusedLocals": true
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "sourceMap": true
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "test",
+    "src"
+  ],
+  "files": [
+    "src/resource.d.ts"
+  ]
 }
