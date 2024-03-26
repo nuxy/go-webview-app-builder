@@ -1,1 +1,7 @@
 @import 'resources/partials/_.scss';
+
+main {
+  > h1 {
+    color: #222;
+  }
+}
