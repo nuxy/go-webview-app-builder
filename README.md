@@ -23,7 +23,7 @@ Install the new build using [gmake](https://www.gnu.org/software/make).
 
 Cross-compile to support [Windows](https://golang.org/dl/go1.15.6.windows-amd64.msi), [OSX](https://golang.org/dl/go1.15.6.darwin-amd64.pkg), [etc](https://golang.org/dl) ..
 
-    $ make buildall
+    $ make build-<darwin|linux|windows>
 
 ### Building the JavaScript app
 
