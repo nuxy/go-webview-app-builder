@@ -13,7 +13,7 @@ build:
 	go build -x $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app $(PACKAGE)
 
 build-app:
-	npm run build --prefix "app"
+	npm run build --prefix "app" --omit=dev
 
 build-darwin:
 	GOOS=darwin GOARCH=amd64 go build $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app-$(VERSION)-osx-64 $(PACKAGE)
