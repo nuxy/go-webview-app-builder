@@ -60,6 +60,7 @@ module.exports = function(env, {analyze}) {
     plugins: [
       new Dotenv({path: `./.env${production ? '' : '.' + 'development'}`}),
       analyze && new BundleAnalyzerPlugin()
-    ].filter(p => p)
+    ].filter(p => p),
+    stats: {warnings: !production}
   };
 };
