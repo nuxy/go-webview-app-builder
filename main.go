@@ -8,6 +8,13 @@ import (
 	"github.com/nuxy/go-webview-app-builder/lib"
 )
 
+const (
+	windowTitle  string = "WebView App"
+	windowHeight int    = 320
+	windowWidth  int    = 480
+	devTools     bool   = false;
+)
+
 //
 // Let's get this party started.
 //
@@ -16,16 +23,16 @@ func main() {
 	jsModules = strings.TrimSpace(jsModules)
 
 	vars := lib.TmplVars{
-		Title: "WebView App",
+		Title: windowTitle,
 		JS: lib.EncodeData(jsModules, "text/javascript"),
 	}
 
 	markup := lib.ReadHtml("app/index.tmpl", vars)
 
-	w := webview.New(false)
+	w := webview.New(devTools)
 	defer w.Destroy()
 	w.SetTitle(vars.Title)
-	w.SetSize(480, 320, webview.HintNone)
+	w.SetSize(windowWidth, windowHeight, webview.HintNone)
 	w.SetHtml(markup)
 	w.Run()
 }
