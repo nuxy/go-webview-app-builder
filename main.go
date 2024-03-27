@@ -14,11 +14,19 @@ import (
 	"strings"
 	"time"
 
-	cache 	"github.com/patrickmn/go-cache"
+	cache "github.com/patrickmn/go-cache"
 	webview "github.com/webview/webview_go"
 
 	"github.com/nuxy/go-webview-app-builder/lib"
 )
+
+import _ "embed"
+
+//go:embed app/dist/main.bundle.js
+var appBundle []byte
+
+//go:embed app/index.tmpl
+var indexTmpl []byte
 
 const (
 	windowTitle  string = "WebView App"
@@ -32,22 +40,21 @@ const (
 //
 func main() {
 
+	// Init temporary in-memory cache.
+	c := cache.New(10 * time.Minute, 60 * time.Minute)
+
 	// Launch WebView with Aurelia [SPA]
-	jsModules := lib.ReadFile("app/dist/main.bundle.js")
-	jsModules = strings.TrimSpace(jsModules)
+	bundle := strings.TrimSpace(string(appBundle))
 
 	vars := lib.TmplVars{
 		Title: windowTitle,
-		JS: lib.EncodeData(jsModules, "text/javascript"),
+		JS: lib.EncodeData(bundle, "text/javascript"),
 	}
 
-	markup := lib.ReadHtml("app/index.tmpl", vars)
+	markup := lib.ReadHtml(string(indexTmpl), vars)
 
 	w := webview.New(devTools)
 	defer w.Destroy()
-
-	// Init temporary in-memory cache.
-	c := cache.New(10 * time.Minute, 60 * time.Minute)
 
 	// Define browser Window bindings.
 	w.Bind("webview_Navigate", func(routeId string) {

@@ -13,10 +13,6 @@ Create a [Aurelia](https://aurelia.io) JavaScript application in a [WebView](htt
 
 ## Build from source
 
-Package build changes that includes static imports using [pkger](https://github.com/markbates/pkger).
-
-    $ pkger -include /src
-
 Install the new build using [gmake](https://www.gnu.org/software/make).
 
     $ make install

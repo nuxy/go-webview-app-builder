@@ -11,7 +11,6 @@ package lib
 
 import (
 	"log"
-	"path/filepath"
 	"strings"
 	"text/template"
 )
@@ -28,8 +27,8 @@ type TmplVars struct {
 //
 // Parse template, return HTML document.
 //
-func ReadHtml(path string, vars TmplVars) string {
-	tmpl, err := template.New(filepath.Base(path)).ParseFiles(path)
+func ReadHtml(data string, vars TmplVars) string {
+	tmpl, err := template.New("data").Parse(data)
 
 	if err != nil {
 		log.Fatal("Cannot parse ", err)
