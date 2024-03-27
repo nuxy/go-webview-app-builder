@@ -20,7 +20,7 @@ const (
 	windowTitle  string = "WebView App"
 	windowHeight int    = 320
 	windowWidth  int    = 480
-	devTools     bool   = true
+	devTools     bool   = false;
 )
 
 //
@@ -29,6 +29,7 @@ const (
 type Browser struct {
 	WebView  webview.WebView
 	document string
+	debug    bool
 }
 
 type BrowserCallback func(payload string)
@@ -47,10 +48,17 @@ func NewBrowser(htmlMarkup string) *Browser {
 // Initialize a new WebView window.
 //
 func (browser *Browser) init() {
-	browser.WebView = webview.New(devTools)
+	browser.WebView = webview.New(browser.debug)
 	browser.WebView.SetTitle(windowTitle)
 	browser.WebView.SetSize(windowWidth, windowHeight, webview.HintNone)
 	browser.WebView.SetHtml(browser.document)
+}
+
+//
+// Launch the WebView window.
+//
+func (browser *Browser) Debug(v bool) {
+	browser.debug = v || devTools
 }
 
 //
@@ -73,11 +81,15 @@ func (browser *Browser) Close() {
 func (browser *Browser) Bind(funcName string, callback BrowserCallback) {
 	c := func(args ...string) {
 		if len(args) == 1 {
-			log.Printf("Function %s called with: %s", funcName, args[0])
+			if (browser.debug) {
+				log.Printf("Function '%s' called with: %s", funcName, args[0])
+			}
 
 			callback(args[0])
 		} else {
-			log.Printf("Function %s called with no arguments", funcName)
+			if (browser.debug) {
+				log.Printf("Function '%s' called with no arguments", funcName)
+			}
 
 			callback("")
 		}

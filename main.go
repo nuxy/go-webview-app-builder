@@ -39,5 +39,6 @@ func main() {
 		browser.Close()
 	})
 
+	browser.Debug(false)
 	browser.Open()
 }
