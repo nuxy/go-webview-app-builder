@@ -1,3 +1,4 @@
+import {IEventAggregator}            from 'aurelia';
 import {IRouteableComponent, IRoute} from '@aurelia/router';
 
 // Local modules.
@@ -28,6 +29,20 @@ export class MyApp implements IRouteableComponent {
       title: 'About'
     }
   ];
+
+  /**
+   * @inheritdoc
+   */
+  constructor(@IEventAggregator readonly ea: IEventAggregator) {}
+
+  /**
+   * @inheritdoc
+   */
+  bound() {
+    this.ea.subscribe('au:router:navigation-start', ({navigation}) => {
+      webViewBindExists('webview_Navigate') && window.webview_Navigate(navigation?.instruction);
+    });
+  }
 
   /**
    * WebView binding to terminate Go app.

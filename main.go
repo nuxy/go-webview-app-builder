@@ -29,6 +29,8 @@ const (
 // Let's get this party started.
 //
 func main() {
+
+	// Launch WebView with Aurelia [SPA]
 	jsModules := lib.ReadFile("app/dist/main.bundle.js")
 	jsModules = strings.TrimSpace(jsModules)
 
@@ -42,9 +44,9 @@ func main() {
 	w := webview.New(devTools)
 	defer w.Destroy()
 
-	// JavaScript Window bindings.
-	w.Bind("webview_LoadModel", func(name string) {
-		log.Printf("Clicked %s", name)
+	// Define browser Window bindings.
+	w.Bind("webview_Navigate", func(routeId string) {
+		log.Printf("RouteId %s", routeId)
 	})
 
 	w.Bind("webview_Terminate", func() {
