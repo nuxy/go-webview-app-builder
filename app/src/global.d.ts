@@ -5,7 +5,7 @@ export {};
  */
 declare global {
   interface Window {
-    webview_Navigate:  any;
-    webview_Terminate: any;
+    browser_Navigate:  any;
+    browser_Terminate: any;
   }
 }

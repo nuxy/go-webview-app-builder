@@ -40,7 +40,7 @@ export class MyApp implements IRouteableComponent {
    */
   bound() {
     this.ea.subscribe('au:router:navigation-start', ({navigation}) => {
-      webViewBindExists('webview_Navigate') && window.webview_Navigate(navigation?.instruction);
+      webViewBindExists('browser_Navigate') && window.browser_Navigate(navigation?.instruction);
     });
   }
 
@@ -48,6 +48,6 @@ export class MyApp implements IRouteableComponent {
    * WebView binding to terminate Go app.
    */
   public exit(): void {
-    webViewBindExists('webview_Terminate') && window.webview_Terminate();
+    webViewBindExists('browser_Terminate') && window.browser_Terminate();
   }
 }
