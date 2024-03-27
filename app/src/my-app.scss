@@ -4,4 +4,12 @@ main {
   > h1 {
     color: #222;
   }
+
+  nav {
+    a {
+      &.exit {
+        color: #ff0000;
+      }
+    }
+  }
 }

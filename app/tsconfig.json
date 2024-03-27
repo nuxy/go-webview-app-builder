@@ -16,6 +16,7 @@
     "src"
   ],
   "files": [
+    "src/global.d.ts",
     "src/resource.d.ts"
   ]
 }
