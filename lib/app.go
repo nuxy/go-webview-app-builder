@@ -29,10 +29,8 @@ func GenHtmlMarkup(appBundle string, indexTmpl string) string {
 	}
 
 	vars := struct {
-		Title string
 		JS string
 	}{
-		Title: "WebView App",
 		JS: encodeData(appBundle, "text/javascript"),
 	}
 
