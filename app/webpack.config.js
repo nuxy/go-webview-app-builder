@@ -20,7 +20,8 @@ module.exports = function(env, {analyze}) {
       modules: [resolve(__dirname, 'src'), 'node_modules']
     },
     devServer: {
-      historyApiFallback: true,
+      static: {directory: __dirname},
+      historyApiFallback: false,
       open: !process.env.CI,
       port: 9000
     },
