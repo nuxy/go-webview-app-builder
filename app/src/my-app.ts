@@ -10,17 +10,20 @@ import {webViewBindExists} from './lib/utils';
 export class MyApp implements IRouteableComponent {
   static routes: IRoute[] = [
     {
-      path: [''],
+      id: 'home',
+      path: ['', 'home'],
       component: Home,
       title: 'Home'
     },
     {
-      path: ['/news'],
+      id: 'news',
+      path: ['news'],
       component: News,
       title: 'News'
     },
     {
-      path: ['/about'],
+      id: 'about',
+      path: ['about'],
       component: About,
       title: 'About'
     }
