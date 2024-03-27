@@ -1,3 +1,12 @@
+//
+//  go-webview-app-builder
+//  Create a Aurelia JavaScript application in a WebView
+//
+//  Copyright 2024, Marc S. Brooks (https://mbrooks.info)
+//  Licensed under the MIT license:
+//  http://www.opensource.org/licenses/mit-license.php
+//
+
 package lib
 
 import (
@@ -16,9 +25,9 @@ type TmplVars struct {
 	JS    string
 }
 
-/**
- * Parse template, return HTML document.
- */
+//
+// Parse template, return HTML document.
+//
 func ReadHtml(path string, vars TmplVars) string {
 	tmpl, err := template.New(filepath.Base(path)).ParseFiles(path)
 
