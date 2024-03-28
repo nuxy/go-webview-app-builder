@@ -11,6 +11,7 @@ package lib
 
 import (
 	"log"
+	"strings"
 
 	webview "github.com/webview/webview_go"
 )
@@ -20,7 +21,7 @@ const (
 	windowTitle  string = "WebView App"
 	windowHeight int    = 320
 	windowWidth  int    = 480
-	devTools     bool   = false;
+	devTools     bool   = false
 )
 
 //
@@ -32,7 +33,8 @@ type Browser struct {
 	debug    bool
 }
 
-type BrowserCallback func(payload string)
+type BrowserFuncVoid   func(arg ...string)
+type BrowserFuncReturn func(arg ...string) string
 
 //
 // NewBrowser creates a WebView instance.
@@ -76,24 +78,48 @@ func (browser *Browser) Close() {
 }
 
 //
-// Expose JavaScript function in Window.
+// Bind JavaScript function to DOM Window (no return, void).
 //
-func (browser *Browser) Bind(funcName string, callback BrowserCallback) {
-	c := func(args ...string) {
-		if len(args) == 1 {
-			if (browser.debug) {
-				log.Printf("Function '%s' called with: %s", funcName, args[0])
-			}
-
-			callback(args[0])
+func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) {
+	c := func(arg ...string) {
+		if len(arg) > 0 {
+			browser.logEvent(funcName, strings.Join(arg, ", "))
 		} else {
-			if (browser.debug) {
-				log.Printf("Function '%s' called with no arguments", funcName)
-			}
-
-			callback("")
+			browser.logEvent(funcName)
 		}
+
+		callback(arg...)
 	}
 
 	browser.WebView.Bind(funcName, c)
+}
+
+//
+// Bind JavaScript function to DOM Window (return string).
+//
+func (browser *Browser) BindFuncReturn(funcName string, callback BrowserFuncReturn) {
+	c := func(arg ...string) string {
+		if len(arg) > 0 {
+			browser.logEvent(funcName, strings.Join(arg, ", "))
+		} else {
+			browser.logEvent(funcName)
+		}
+
+		return callback(arg...)
+	}
+
+	browser.WebView.Bind(funcName, c)
+}
+
+//
+// Output event to standard logger.
+//
+func (browser *Browser) logEvent(arg ...string) {
+	if (browser.debug) {
+		if len(arg) > 1 && len(arg[1]) > 1 {
+			log.Printf("Function '%s' called with '%s'", arg[0], arg[1])
+		} else {
+			log.Printf("Function '%s' called with no arguments", arg[0])
+		}
+	}
 }

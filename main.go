@@ -30,11 +30,11 @@ func main() {
 	browser := lib.NewBrowser(htmlDoc)
 
 	// Define browser Window bindings.
-	browser.Bind("browser_Navigate", func(routeId string) {
-		storage.Set("routeId", routeId)
+	browser.BindFuncVoid("browser_Navigate", func(arg ...string) {
+		storage.Set("routeId", arg[0])
 	})
 
-	browser.Bind("browser_Terminate", func(_ string) {	
+	browser.BindFuncVoid("browser_Terminate", func(_ ...string) {	
 		storage.Clear()
 		browser.Close()
 	})
