@@ -27,13 +27,13 @@ export class Storage {
    * @return {*|void}
    */
   static get(key: string): any | void {
-    if (webViewBindExists('browser_StorageGet')) {
-      if (typeof key === 'string') {
-        const value = window.browser_StorageGet(key);
+    if (typeof key === 'string') {
+      const value = (webViewBindExists('browser_StorageGet'))
+        ? window.browser_StorageGet(key)
+        : sessionStorage.getItem(key);
 
-        if (value && Storage.isValidJson(value)) {
-          return JSON.parse(value);
-        }
+      if (value && Storage.isValidJson(value)) {
+        return JSON.parse(value);
       }
     }
   }
@@ -53,12 +53,12 @@ export class Storage {
    * @return {void}
    */
   static set(key: string, value: any): void {
-    if (webViewBindExists('browser_StorageSet')) {
-      if (typeof key === 'string') {
-        value = JSON.stringify(value);
+    if (typeof key === 'string') {
+      value = JSON.stringify(value);
 
-        window.browser_StorageGet(key, value);
-      }
+      (webViewBindExists('browser_StorageSet'))
+        ? window.browser_StorageSet(key, value)
+        : sessionStorage.setItem(key, value);
     }
   }
 
@@ -74,10 +74,10 @@ export class Storage {
    * @return {void}
    */
   static remove(key: string): void {
-    if (webViewBindExists('browser_StorageDelete')) {
-      if (typeof key === 'string') {
-        window.browser_StorageDelete(key);
-      }
+    if (typeof key === 'string') {
+      (webViewBindExists('browser_StorageDelete'))
+        ? window.browser_StorageDelete(key)
+        : sessionStorage.removeItem(key);
     }
   }
 
