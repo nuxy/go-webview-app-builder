@@ -44,6 +44,14 @@ export class MyApp implements IRouteableComponent {
     });
   }
 
+  attached() {
+    if (process.env.debug !== 'true') {
+
+      // Globally disable (right-click) context menus.
+      window.oncontextmenu = event => event.preventDefault();
+    }
+  }
+
   /**
    * WebView binding to terminate Go app.
    */
