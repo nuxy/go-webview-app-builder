@@ -1,6 +1,9 @@
 @import 'resources/partials/_.scss';
+@import 'resources/partials/_fonts.scss';
 
 main {
+  font-family: RobotoRegular;
+
   > h1 {
     color: #222;
   }
