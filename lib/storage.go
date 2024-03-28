@@ -37,6 +37,13 @@ func (storage *Storage) Clear() {
 }
 
 //
+// Delete value from storage by key.
+//
+func (storage *Storage) Delete(k string) {
+	storage.cache.Delete(k)
+}
+
+//
 // Get value from storage by key.
 //
 func (storage *Storage) Get(k string) string {
