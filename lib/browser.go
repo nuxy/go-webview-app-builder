@@ -82,11 +82,7 @@ func (browser *Browser) Close() {
 //
 func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) {
 	c := func(arg ...string) {
-		if len(arg) > 0 {
-			browser.logEvent(funcName, strings.Join(arg, ", "))
-		} else {
-			browser.logEvent(funcName)
-		}
+		browser.logEvent(funcName, strings.Join(arg, ", "))
 
 		callback(arg...)
 	}
@@ -99,11 +95,7 @@ func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) 
 //
 func (browser *Browser) BindFuncReturn(funcName string, callback BrowserFuncReturn) {
 	c := func(arg ...string) string {
-		if len(arg) > 0 {
-			browser.logEvent(funcName, strings.Join(arg, ", "))
-		} else {
-			browser.logEvent(funcName)
-		}
+		browser.logEvent(funcName, strings.Join(arg, ", "))
 
 		return callback(arg...)
 	}
