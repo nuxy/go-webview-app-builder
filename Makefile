@@ -7,7 +7,7 @@ ifeq ($(OS), Windows_NT)
 endif
 
 run:
-	go run $(GOFLAGS) -ldflags $(LDFLAGS) ./main.go
+	go run $(GOFLAGS) -ldflags $(LDFLAGS) ./app.go
 
 build:
 	go build -x $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app $(PACKAGE)
