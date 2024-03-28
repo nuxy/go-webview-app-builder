@@ -34,6 +34,18 @@ func main() {
 		storage.Set("routeId", arg[0])
 	})
 
+	browser.BindFuncVoid("browser_StorageDelete", func(arg ...string) {
+		storage.Delete(arg[0])
+	})
+
+	browser.BindFuncVoid("browser_StorageSet", func(arg ...string) {	
+		storage.Set(arg[0], arg[1])
+	})
+
+	browser.BindFuncReturn("browser_StorageGet", func(arg ...string) string {
+		return storage.Get(arg[0])
+	})
+
 	browser.BindFuncVoid("browser_Terminate", func(_ ...string) {	
 		storage.Clear()
 		browser.Close()

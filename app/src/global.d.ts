@@ -5,7 +5,10 @@ export {};
  */
 declare global {
   interface Window {
-    browser_Navigate:  any;
+    browser_Navigate: any;
+    browser_StorageDelete: any;
+    browser_StorageGet: any;
+    browser_StorageSet: any;
     browser_Terminate: any;
   }
 }
