@@ -27,6 +27,7 @@
   "author": "Marc S. Brooks <devel@mbrooks.info> (https://mbrooks.info)",
   "license": "MIT",
   "dependencies": {
+    "@aurelia/fetch-client": "latest",
     "@aurelia/router": "latest",
     "aurelia": "latest"
   },
