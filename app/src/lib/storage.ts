@@ -11,7 +11,7 @@
 import {webViewBindExists} from './utils';
 
 /**
- * Provides methods for storing data.
+ * Provides methods for storing data (Go WebView bindings and SPA fallback).
  */
 export class Storage {
 
@@ -21,10 +21,10 @@ export class Storage {
    * @param {String} key
    *   Storage key name.
    *
+   * @return {*|void}
+   *
    * @example
    *   const data = Storage.get('foo');
-   *
-   * @return {*|void}
    */
   static get(key: string): any | void {
     if (typeof key === 'string') {
@@ -47,10 +47,10 @@ export class Storage {
    * @param {*} value
    *   storageType value.
    *
+   * @return {void}
+   *
    * @example
    *   Storage.set('foo', {bar: 'baz'});
-   *
-   * @return {void}
    */
   static set(key: string, value: any): void {
     if (typeof key === 'string') {
@@ -68,10 +68,10 @@ export class Storage {
    * @param {String} key
    *   Storage item key name.
    *
+   * @return {void}
+   *
    * @example
    *   Storage.remove('foo');
-   *
-   * @return {void}
    */
   static remove(key: string): void {
     if (typeof key === 'string') {
@@ -87,13 +87,13 @@ export class Storage {
    * @param {String} str
    *   JSON as string.
    *
+   * @return {Boolean|void}
+   *
    * @example
    *   const result = Storage.isValidJson({
    *     "foo": "bar",
    *     "baz": "qux"
    *   });
-   *
-   * @return {Boolean|void}
    */
   static isValidJson(str: string): boolean | void {
     if (typeof str === 'string') {
