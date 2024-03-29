@@ -5,6 +5,7 @@ export {};
  */
 declare global {
   interface Window {
+    browser_AppVersion: any;
     browser_Navigate: any;
     browser_StorageDelete: any;
     browser_StorageGet: any;

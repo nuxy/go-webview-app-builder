@@ -21,6 +21,9 @@ var appBundle []byte
 //go:embed app/index.tmpl
 var indexTmpl []byte
 
+// Version Makefile $VERSION
+var Version string
+
 //
 // Let's get this party started.
 //
@@ -30,6 +33,10 @@ func main() {
 	browser := lib.NewBrowser(htmlDoc, false)
 
 	// Define browser Window bindings.
+	browser.BindFuncReturn("browser_AppVersion", func(_ ...string) string {
+		return Version
+	})
+
 	browser.BindFuncVoid("browser_Navigate", func(arg ...string) {
 		storage.Set("routeId", arg[0])
 	})

@@ -38,6 +38,17 @@ export class MyApp implements IRouteableComponent {
   /**
    * @inheritdoc
    */
+  created() {
+    let version = require('../package.json').version;
+
+    if (webViewBindExists('browser_AppVersion')) {
+      version = window.browser_AppVersion();
+    }
+
+    // Output to console.
+    console.info(`Version: ${version}`);
+  }
+
   bound() {
     this.ea.subscribe('au:router:navigation-start', ({navigation}) => {
       webViewBindExists('browser_Navigate') && window.browser_Navigate(navigation?.instruction);
