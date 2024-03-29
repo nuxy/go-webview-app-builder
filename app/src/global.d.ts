@@ -5,11 +5,11 @@ export {};
  */
 declare global {
   interface Window {
-    browser_AppVersion: any;
-    browser_Navigate: any;
-    browser_StorageDelete: any;
-    browser_StorageGet: any;
-    browser_StorageSet: any;
-    browser_Terminate: any;
+    browser_AppVersion?: () => string;
+    browser_Navigate?: (routeId: string) => void;
+    browser_StorageDelete?: (key: string) => void;
+    browser_StorageGet?: (key: string) => string;
+    browser_StorageSet?: (key: string, value: string) => void;
+    browser_Terminate?: () => void;
   }
 }
