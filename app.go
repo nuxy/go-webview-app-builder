@@ -27,7 +27,7 @@ var indexTmpl []byte
 func main() {
 	storage := lib.NewStorage()
 	htmlDoc := lib.GenHtmlMarkup(string(appBundle), string(indexTmpl))
-	browser := lib.NewBrowser(htmlDoc)
+	browser := lib.NewBrowser(htmlDoc, false)
 
 	// Define browser Window bindings.
 	browser.BindFuncVoid("browser_Navigate", func(arg ...string) {
@@ -38,7 +38,7 @@ func main() {
 		storage.Delete(arg[0])
 	})
 
-	browser.BindFuncVoid("browser_StorageSet", func(arg ...string) {	
+	browser.BindFuncVoid("browser_StorageSet", func(arg ...string) {
 		storage.Set(arg[0], arg[1])
 	})
 
@@ -46,11 +46,10 @@ func main() {
 		return storage.Get(arg[0])
 	})
 
-	browser.BindFuncVoid("browser_Terminate", func(_ ...string) {	
+	browser.BindFuncVoid("browser_Terminate", func(_ ...string) {
 		storage.Clear()
 		browser.Close()
 	})
 
-	browser.Debug(false)
 	browser.Open()
 }

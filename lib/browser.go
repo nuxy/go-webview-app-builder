@@ -39,9 +39,10 @@ type BrowserFuncReturn func(arg ...string) string
 //
 // NewBrowser creates a WebView instance.
 //
-func NewBrowser(htmlMarkup string) *Browser {
+func NewBrowser(htmlMarkup string, debug bool) *Browser {
 	browser := &Browser{}
 	browser.document = htmlMarkup
+	browser.debug = debug || devTools
 	browser.init()
 	return browser
 }
@@ -54,13 +55,6 @@ func (browser *Browser) init() {
 	browser.WebView.SetTitle(windowTitle)
 	browser.WebView.SetSize(windowWidth, windowHeight, webview.HintNone)
 	browser.WebView.SetHtml(browser.document)
-}
-
-//
-// Launch the WebView window.
-//
-func (browser *Browser) Debug(v bool) {
-	browser.debug = v || devTools
 }
 
 //
