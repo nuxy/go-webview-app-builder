@@ -26,11 +26,11 @@ export class Storage {
    * @example
    *   const data = Storage.get('foo');
    */
-  static get(key: string): any | void {
+  static async get(key: string): Promise<any> {
     if (typeof key === 'string') {
       const value = (webViewBindExists('browser_StorageGet'))
-        ? window.browser_StorageGet(key)
-        : sessionStorage.getItem(key);
+        ? await window.browser_StorageGet(key)
+        : await sessionStorage.getItem(key);
 
       if (value && Storage.isValidJson(value)) {
         return JSON.parse(value);
@@ -52,13 +52,13 @@ export class Storage {
    * @example
    *   Storage.set('foo', {bar: 'baz'});
    */
-  static set(key: string, value: any): void {
+  static async set(key: string, value: any): Promise<void> {
     if (typeof key === 'string') {
       value = JSON.stringify(value);
 
       (webViewBindExists('browser_StorageSet'))
-        ? window.browser_StorageSet(key, value)
-        : sessionStorage.setItem(key, value);
+        ? await window.browser_StorageSet(key, value)
+        : await sessionStorage.setItem(key, value);
     }
   }
 
@@ -73,11 +73,11 @@ export class Storage {
    * @example
    *   Storage.remove('foo');
    */
-  static remove(key: string): void {
+  static async remove(key: string): Promise<void> {
     if (typeof key === 'string') {
       (webViewBindExists('browser_StorageDelete'))
-        ? window.browser_StorageDelete(key)
-        : sessionStorage.removeItem(key);
+        ? await window.browser_StorageDelete(key)
+        : await sessionStorage.removeItem(key);
     }
   }
 

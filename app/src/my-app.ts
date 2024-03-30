@@ -38,11 +38,11 @@ export class MyApp implements IRouteableComponent {
   /**
    * @inheritdoc
    */
-  created() {
+  async created() {
     let version = require('../package.json').version;
 
     if (webViewBindExists('browser_AppVersion')) {
-      version = window.browser_AppVersion();
+      version = await window.browser_AppVersion();
     }
 
     // Output to console.
@@ -50,8 +50,8 @@ export class MyApp implements IRouteableComponent {
   }
 
   bound() {
-    this.ea.subscribe('au:router:navigation-start', ({navigation}) => {
-      webViewBindExists('browser_Navigate') && window.browser_Navigate(navigation?.instruction);
+    this.ea.subscribe('au:router:navigation-start', async ({navigation}) => {
+      webViewBindExists('browser_Navigate') && await window.browser_Navigate(navigation?.instruction);
     });
   }
 
@@ -66,7 +66,7 @@ export class MyApp implements IRouteableComponent {
   /**
    * WebView binding to terminate Go app.
    */
-  public exit(): void {
-    webViewBindExists('browser_Terminate') && window.browser_Terminate();
+  public async exit(): Promise<void> {
+    webViewBindExists('browser_Terminate') && await window.browser_Terminate();
   }
 }
