@@ -1,4 +1,13 @@
 /**
+ *  go-webview-app-builder
+ *  Create a Aurelia JavaScript application in a WebView
+ *
+ *  Copyright 2024, Marc S. Brooks (https://mbrooks.info)
+ *  Licensed under the MIT license:
+ *  http://www.opensource.org/licenses/mit-license.php
+ */
+
+/**
  * Check Go defined WebView function binding exists.
  *
  * @param name
