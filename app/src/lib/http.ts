@@ -13,15 +13,15 @@ import {newInstanceOf} from '@aurelia/kernel';
 // Local modules.
 import {webViewBindExists} from './utils';
 
-type RequestBody = {
+export type RequestBody = {
   [T: string]: string
 }
 
-type RequestHeaders = {
+export type RequestHeaders = {
   [T: string]: string
 }
 
-type Response = {
+export type Response = {
   Status: number,
   Headers: RequestHeaders,
   Body: string
@@ -47,7 +47,7 @@ export class Request {
    *   Request URL/URI location.
    *
    * @example
-   *   const response = await Request.get('https://domain.com/index.html');
+   *   const response: Response = await Request.get('https://domain.com/index.html');
    *
    * @return {Promise<Response>}
    */
@@ -64,7 +64,7 @@ export class Request {
    *   Request URL/URI location.
    *
    * @example
-   *   const response = await Request.head('https://domain.com/index.html');
+   *   const response: Response = await Request.head('https://domain.com/index.html');
    *
    * @return {Promise<Response>}
    */
@@ -87,7 +87,7 @@ export class Request {
    *   Request body (optional).
    *
    * @example
-   *   const response = await Request.post(
+   *   const response: Response = await Request.post(
    *     'https://domain.com/index.html',
    *     {
    *       'Accept': 'text/html',

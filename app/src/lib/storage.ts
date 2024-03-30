@@ -10,6 +10,10 @@
 // Local modules.
 import {webViewBindExists} from './utils';
 
+export type StorageData = {
+  [T: string]: string
+}
+
 /**
  * Provides methods for storing data (Go WebView bindings and SPA fallback).
  */
@@ -24,7 +28,7 @@ export class Storage {
    * @return {*|void}
    *
    * @example
-   *   const data = Storage.get('foo');
+   *   const data: StorageData = await Storage.get('foo');
    */
   static async get(key: string): Promise<any> {
     if (typeof key === 'string') {
@@ -50,7 +54,7 @@ export class Storage {
    * @return {void}
    *
    * @example
-   *   Storage.set('foo', {bar: 'baz'});
+   *   await Storage.set('foo', {bar: 'baz'}: StorageData);
    */
   static async set(key: string, value: any): Promise<void> {
     if (typeof key === 'string') {
@@ -71,7 +75,7 @@ export class Storage {
    * @return {void}
    *
    * @example
-   *   Storage.remove('foo');
+   *   await Storage.remove('foo');
    */
   static async remove(key: string): Promise<void> {
     if (typeof key === 'string') {
