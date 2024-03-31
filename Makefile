@@ -1,20 +1,19 @@
 VERSION = 0.0.1
 PACKAGE = github.com/nuxy/go-webview-app-builder
-DEVMODE = $(shell echo $(MAKEFLAGS) | grep -q -- "--debug" && echo true || echo false)
-LDFLAGS = "-X main.Version=$(VERSION) -X main.DevMode=$(DEVMODE)"
+DEBUG   = $(shell echo $(MAKEFLAGS) | grep -q -- "--debug" && echo true || echo false)
+LDFLAGS = "-X main.Version=$(VERSION) -X main.DevTools=$(DEBUG)"
 
 ifeq ($(OS), Windows_NT)
     LDFLAGS := "-H windowsgui"
 endif
+
+NODE_ENV = $(shell [ $(DEBUG) = true ] || echo "--omit=dev")
 
 run:
 	go run $(GOFLAGS) -ldflags $(LDFLAGS) ./app.go
 
 build:
 	go build -x $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app $(PACKAGE)
-
-build-app:
-	npm run build --prefix "app" $(if ($(DEBUG) = 'false'),--omit=dev,--only=prod)
 
 build-darwin:
 	GOOS=darwin GOARCH=amd64 go build $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app-$(VERSION)-osx-64 $(PACKAGE)
@@ -28,5 +27,8 @@ build-windows:
 install:
 	go install -x $(GOFLAGS) -ldflags $(LDFLAGS) $(PACKAGE)
 
-install-app:
-	npm install --prefix "app"
+webview-app-build:
+	npm run build --prefix "app" $(NODE_ENV)
+
+webview-app-install:
+	npm install --prefix "app" $(NODE_ENV)

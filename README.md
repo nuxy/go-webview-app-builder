@@ -21,15 +21,17 @@ Cross-compile to support [Windows](https://golang.org/dl/go1.15.6.windows-amd64.
 
     $ make build-<darwin|linux|windows>
 
+Note: Using `--debug` will enable WebView *DevTools* and development mode in the JavaScript application.
+
 ### Building the JavaScript app
 
 Install the [Node.js](https://nodejs.org) application dependencies using [NPM](https://npmjs.com):
 
-    $ make install-app
+    $ make webview-app-install
 
 Transpile ES2017 sources (using [TypeScript](https://www.typescriptlang.org/docs/handbook/compiler-options.html)) and minify to a distribution:
 
-    $ make build-app
+    $ make webview-app-build
 
 ## Running the application
 

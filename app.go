@@ -22,8 +22,8 @@ var appBundle []byte
 var indexTmpl []byte
 
 // Makefile linker variables
-var Version string
-var DevMode string
+var Version  string
+var DevTools string
 
 //
 // Let's get this party started.
@@ -32,7 +32,7 @@ func main() {
 	storage := lib.NewStorage()
 	request := lib.NewRequest()
 	htmlDoc := lib.GenHtmlMarkup(string(appBundle), string(indexTmpl))
-	browser := lib.NewBrowser(htmlDoc, lib.StrToBool(DevMode))
+	browser := lib.NewBrowser(htmlDoc, lib.StrToBool(DevTools))
 
 	// Define browser WebView global bindings.
 	// @see app/src/global.d.ts
