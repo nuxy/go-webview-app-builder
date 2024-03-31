@@ -11,8 +11,8 @@ declare global {
     browser_HttpPost?: (url: string, headers: string, body: string) => Promise<any>;
     browser_Navigate?: (routeId: string) => Promise<void>;
     browser_StorageDelete?: (key: string) => Promise<void>;
-    browser_StorageGet?: (key: string) => Promise<string>;
-    browser_StorageSet?: (key: string, value: string) => Promise<void>;
+    browser_StorageGet?: (key: string) => Promise<any>;
+    browser_StorageSet?: (key: string, value: any) => Promise<void>;
     browser_Terminate?: () => Promise<void>;
   }
 }
