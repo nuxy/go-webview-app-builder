@@ -1,9 +1,10 @@
 VERSION = 0.0.1
 PACKAGE = github.com/nuxy/go-webview-app-builder
-LDFLAGS = "-X main.Version=$(VERSION)"
+DEVMODE = $(shell echo $(MAKEFLAGS) | grep -q -- "--debug" && echo true || echo false)
+LDFLAGS = "-X main.Version=$(VERSION) -X main.DevMode=$(DEVMODE)"
 
 ifeq ($(OS), Windows_NT)
-    LDFLAGS:="-H windowsgui"
+    LDFLAGS := "-H windowsgui"
 endif
 
 run:
@@ -13,7 +14,7 @@ build:
 	go build -x $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app $(PACKAGE)
 
 build-app:
-	npm run build --prefix "app" --omit=dev
+	npm run build --prefix "app" $(if ($(DEBUG) = 'false'),--omit=dev,--only=prod)
 
 build-darwin:
 	GOOS=darwin GOARCH=amd64 go build $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app-$(VERSION)-osx-64 $(PACKAGE)
