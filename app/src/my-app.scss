@@ -8,9 +8,12 @@ main {
     color: #222;
   }
 
+  a {
+    color: #007d9c;
+  }
+
   nav {
     a {
-      color: #00aed9;
       text-decoration: none;
 
       &.exit {
