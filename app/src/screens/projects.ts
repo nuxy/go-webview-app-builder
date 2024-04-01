@@ -3,7 +3,7 @@ import {newInstanceOf} from '@aurelia/kernel';
 // Local modules.
 import {Request, Response} from '../lib/http';
 import {Storage}           from '../lib/storage';
-import {webViewBindExists} from '../lib/utils';
+import {openExtBrowser}    from '../lib/utils';
 
 type GithubRepo = {
   [T: string]: string
@@ -19,6 +19,8 @@ type ProjectRepo = {
 export class Projects {
   public title = 'Projects';
   public repos: ProjectRepo[];
+
+  public openExternal = openExtBrowser;
 
   constructor(@newInstanceOf(Request) private request: Request) {}
 
@@ -49,12 +51,4 @@ export class Projects {
       this.repos = repos;
     }
   }
-
-  /**
-   * Open URL in an external application.
-   *
-   * @param {String} url
-   *   URL string.
-   */
-  public openExternal(url: string): void {}
 }

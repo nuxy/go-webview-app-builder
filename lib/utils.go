@@ -12,7 +12,16 @@ package lib
 import (
 	"log"
 	"strconv"
+
+	"github.com/pkg/browser"
 )
+
+//
+// Opens URL in the OS default web browser.
+//
+func OpenExtBrowser(url string) {
+	browser.OpenURL(url)
+}
 
 //
 // Converts a valid string value to boolean.

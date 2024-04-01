@@ -8,6 +8,23 @@
  */
 
 /**
+ * Opens URL in the OS default web browser.
+ *
+ * @param {String} url
+ *   URL string.
+ *
+ * @return {void}
+ *
+ * @example
+ *   openExternalUrl('https://domain.com');
+ */
+export function openExtBrowser(url: string): void {
+  if (webViewBindExists('browser_OpenExtBrowser')) {
+    window.browser_OpenExtBrowser(url);
+  }
+}
+
+/**
  * Check Go defined WebView function binding exists.
  *
  * @param {String} name

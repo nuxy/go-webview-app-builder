@@ -56,6 +56,10 @@ func main() {
 		storage.Set("routeId", arg[0])
 	})
 
+	browser.BindFuncVoid("browser_OpenExtBrowser", func(arg ...string) {
+		lib.OpenExtBrowser(arg[0])
+	})
+
 	browser.BindFuncVoid("browser_StorageDelete", func(arg ...string) {
 		storage.Delete(arg[0])
 	})

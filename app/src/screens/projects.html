@@ -4,7 +4,7 @@
   <ul>
     <li repeat.for="repo of repos">
       <strong>${repo.name}</strong> <small>(${repo.language})</small><br />
-      <a click.trigger="openExternal('${repo.url}')">${repo.url}</a>
+      <a click.trigger="openExternal(repo.url)">${repo.url}</a>
     </li>
   <ul>
 </section>
