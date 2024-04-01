@@ -41,8 +41,8 @@ type BrowserFuncReturn func(arg ...string) string
 //
 func NewBrowser(htmlMarkup string, debug bool) *Browser {
 	browser := &Browser{}
-	browser.document = htmlMarkup
 	browser.debug = debug || devTools
+	browser.document = htmlMarkup
 	browser.init()
 	return browser
 }
@@ -53,7 +53,7 @@ func NewBrowser(htmlMarkup string, debug bool) *Browser {
 func (browser *Browser) init() {
 	browser.WebView = webview.New(browser.debug)
 	browser.WebView.SetTitle(windowTitle)
-	browser.WebView.SetSize(windowWidth, windowHeight, webview.HintNone)
+	browser.WebView.SetSize(windowWidth, windowHeight, webview.HintFixed)
 	browser.WebView.SetHtml(browser.document)
 }
 
