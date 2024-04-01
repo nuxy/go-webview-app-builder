@@ -10,7 +10,7 @@ endif
 NODE_ENV = $(shell [ $(DEBUG) = true ] || echo "--omit=dev")
 
 run:
-	go run $(GOFLAGS) -ldflags $(LDFLAGS) ./app.go
+	$(MAKE) webview-app-build && go run $(GOFLAGS) -ldflags $(LDFLAGS) ./app.go
 
 build:
 	go build -x $(GOFLAGS) -ldflags $(LDFLAGS) -o ./bin/webview-app $(PACKAGE)
