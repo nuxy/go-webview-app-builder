@@ -2,9 +2,9 @@ import {IEventAggregator}            from 'aurelia';
 import {IRouteableComponent, IRoute} from '@aurelia/router';
 
 // Local modules.
-import {Home}  from './screens/home';
-import {News}  from './screens/news';
-import {About} from './screens/about';
+import {Home}     from './screens/home';
+import {About}    from './screens/about';
+import {Projects} from './screens/projects';
 
 import {webViewBindExists} from './lib/utils';
 
@@ -17,16 +17,16 @@ export class MyApp implements IRouteableComponent {
       title: 'Home'
     },
     {
-      id: 'news',
-      path: ['news'],
-      component: News,
-      title: 'News'
-    },
-    {
       id: 'about',
       path: ['about'],
       component: About,
       title: 'About'
+    },
+    {
+      id: 'projects',
+      path: ['projects'],
+      component: Projects,
+      title: 'Projects'
     }
   ];
 

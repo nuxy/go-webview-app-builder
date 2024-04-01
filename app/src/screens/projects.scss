@@ -1,0 +1,19 @@
+#projects {
+  ul {
+    li {
+      margin-bottom: 10px;
+
+      a {
+        cursor: pointer;
+      }
+
+      small {
+        color: #444;
+      }
+
+      .title {
+        color: #555;
+      }
+    }
+  }
+}
