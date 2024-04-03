@@ -47,8 +47,9 @@ export class Projects {
 
       // .. and cache locally.
       await Storage.set('projects', repos);
-
-      this.repos = repos;
     }
+
+    // Limit results to 10 items.
+    this.repos = repos.slice(0, 10);
   }
 }
