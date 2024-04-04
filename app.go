@@ -30,9 +30,9 @@ var DevTools string
 //
 var settings = lib.BrowserSettings {
 	Title: "WebView App",
-	Height: 320,
-	Width: 480,
-	Resize: false,
+	Height: 590,
+	Width: 620,
+	Resize: true,
 	Debug: lib.StrToBool(DevTools),
 }
 

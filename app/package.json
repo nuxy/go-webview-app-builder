@@ -29,7 +29,8 @@
   "dependencies": {
     "@aurelia/fetch-client": "latest",
     "@aurelia/router": "latest",
-    "aurelia": "latest"
+    "aurelia": "latest",
+    "slot-machine-gen": "latest"
   },
   "devDependencies": {
     "@aurelia/webpack-loader": "latest",

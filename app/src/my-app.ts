@@ -3,7 +3,7 @@ import {IRouteableComponent, IRoute} from '@aurelia/router';
 
 // Local modules.
 import {About}    from './screens/about';
-import {Example}  from './screens/example';
+import {Game}     from './screens/game';
 import {Projects} from './screens/projects';
 
 import {webViewBindExists} from './lib/utils';
@@ -17,10 +17,10 @@ export class MyApp implements IRouteableComponent {
       title: 'About'
     },
     {
-      id: 'example',
-      path: ['example'],
-      component: Example,
-      title: 'Example'
+      id: 'game',
+      path: ['game'],
+      component: Game,
+      title: 'Game'
     },
     {
       id: 'projects',
