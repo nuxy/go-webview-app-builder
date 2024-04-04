@@ -16,21 +16,21 @@ import (
 	webview "github.com/webview/webview_go"
 )
 
-// Browser WebView properties.
-const (
-	windowTitle  string = "WebView App"
-	windowHeight int    = 320
-	windowWidth  int    = 480
-	devTools     bool   = false
-)
-
 //
 // Browser declared data types.
 //
+type BrowserSettings struct {
+	Title  string
+	Height int
+	Width  int
+	Resize bool
+	Debug  bool
+}
+
 type Browser struct {
 	WebView  webview.WebView
 	document string
-	debug    bool
+	settings BrowserSettings
 }
 
 type BrowserFuncVoid   func(arg ...string)
@@ -39,9 +39,8 @@ type BrowserFuncReturn func(arg ...string) string
 //
 // NewBrowser creates a WebView instance.
 //
-func NewBrowser(htmlMarkup string, debug bool) *Browser {
-	browser := &Browser{}
-	browser.debug = debug || devTools
+func NewBrowser(htmlMarkup string, settings BrowserSettings) *Browser {
+	browser := &Browser{settings: settings}
 	browser.document = htmlMarkup
 	browser.init()
 	return browser
@@ -51,9 +50,15 @@ func NewBrowser(htmlMarkup string, debug bool) *Browser {
 // Initialize a new WebView window.
 //
 func (browser *Browser) init() {
-	browser.WebView = webview.New(browser.debug)
-	browser.WebView.SetTitle(windowTitle)
-	browser.WebView.SetSize(windowWidth, windowHeight, webview.HintFixed)
+	var webviewHint webview.Hint = webview.HintFixed
+
+	if browser.settings.Resize {
+		webviewHint = webview.HintNone
+	}
+
+	browser.WebView = webview.New(browser.settings.Debug)
+	browser.WebView.SetTitle(browser.settings.Title)
+	browser.WebView.SetSize(browser.settings.Width, browser.settings.Height, webviewHint)
 	browser.WebView.SetHtml(browser.document)
 }
 
@@ -101,7 +106,7 @@ func (browser *Browser) BindFuncReturn(funcName string, callback BrowserFuncRetu
 // Output event to standard logger.
 //
 func (browser *Browser) logEvent(arg ...string) {
-	if (browser.debug) {
+	if (browser.settings.Debug) {
 		if len(arg) > 1 && len(arg[1]) > 1 {
 			log.Printf("Function '%s' called with '%s'", arg[0], arg[1])
 		} else {

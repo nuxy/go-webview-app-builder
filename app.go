@@ -26,13 +26,24 @@ var Version  string
 var DevTools string
 
 //
+// Browser settings (defaults).
+//
+var settings = lib.BrowserSettings {
+	Title: "WebView App",
+	Height: 320,
+	Width: 480,
+	Resize: false,
+	Debug: lib.StrToBool(DevTools),
+}
+
+//
 // Let's get this party started.
 //
 func main() {
 	storage := lib.NewStorage()
 	request := lib.NewRequest()
 	htmlDoc := lib.GenHtmlMarkup(string(appBundle), string(indexTmpl))
-	browser := lib.NewBrowser(htmlDoc, lib.StrToBool(DevTools))
+	browser := lib.NewBrowser(htmlDoc, settings)
 
 	// Define browser WebView global bindings.
 	// @see app/src/global.d.ts
