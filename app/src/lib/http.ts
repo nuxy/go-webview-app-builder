@@ -7,9 +7,6 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-import {IHttpClient}   from '@aurelia/fetch-client';
-import {newInstanceOf} from '@aurelia/kernel';
-
 // Local modules.
 import {webViewBindExists} from './utils';
 
@@ -31,14 +28,6 @@ export type Response = {
  * Provides HTTP client methods (Go WebView bindings and SPA fallback).
  */
 export class Request {
-
-  /**
-   * Create a new instance of Request.
-   *
-   * @param {IHttpClient} http
-   *   IHttpClient instance.
-   */
-  constructor(@newInstanceOf(IHttpClient) readonly client: IHttpClient) {}
 
   /**
    * Make HTTP GET request to a remote source.
@@ -152,16 +141,11 @@ export class Request {
       }, headers);
     }
 
-    // Configure defaults.
-    this.client.configure(config => {
-      config.withDefaults({headers});
-    });
-
-    return this.client
-      .fetch(url, {
+    return fetch(url, {
         method,
         body: data,
-        credentials: 'include'
+        credentials: 'include',
+        headers
       })
 
       // Process response.
