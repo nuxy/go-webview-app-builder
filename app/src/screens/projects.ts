@@ -17,7 +17,8 @@ type ProjectRepo = {
 };
 
 export class Projects {
-  public title = 'Projects';
+  public title = 'Remote source';
+
   public repos: ProjectRepo[];
 
   public openExternal = openExtBrowser;
@@ -49,7 +50,7 @@ export class Projects {
       await Storage.set('projects', repos);
     }
 
-    // Limit results to 10 items.
-    this.repos = repos.slice(0, 10);
+    // Limit results to 8 items.
+    this.repos = repos.slice(0, 8);
   }
 }
