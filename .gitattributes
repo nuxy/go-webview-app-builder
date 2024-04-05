@@ -3,5 +3,4 @@
 *.html -linguist-detectable
 *.scss -linguist-detectable
 
-app/src/global.d.ts linguist-detectable
-app/src/lib         linguist-detectable
+app/src/lib/* linguist-detectable
