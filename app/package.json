@@ -1,7 +1,7 @@
 {
   "name": "webview-app",
   "version": "0.0.1",
-  "description": "WebView Aurelia JavaScript application",
+  "description": "WebView App (Aurelia2 framework example)",
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack",
