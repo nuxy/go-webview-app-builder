@@ -1,6 +1,6 @@
 # WebView App Builder
 
-Create a [Aurelia](https://aurelia.io) JavaScript application in a [WebView](https://en.wikipedia.org/wiki/WebView). :warning: Work In Progress :warning:
+Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView) :warning: Work in Progress :warning:
 
 ## Dependencies
 

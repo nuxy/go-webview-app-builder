@@ -1,6 +1,6 @@
 /**
  *  go-webview-app-builder
- *  Create a Aurelia JavaScript application in a WebView
+ *  Create a JavaScript single-page application (SPA) in a WebView
  *
  *  Copyright 2024, Marc S. Brooks (https://mbrooks.info)
  *  Licensed under the MIT license:
