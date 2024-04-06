@@ -1,13 +1,14 @@
 {
   "name": "webview-app",
   "version": "0.0.1",
-  "description": "WebView App (Aurelia2 framework example)",
+  "description": "WebView App (Aurelia 2 framework example)",
   "main": "dist/bundle.js",
+  "type": "module",
   "scripts": {
     "build": "webpack",
     "lint": "eslint . --ext .ts,.tsx",
     "start": "webpack serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_NO_WARNINGS=1 mocha --project tsconfig.json --require test/mocha.env.js 'test/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -33,10 +34,15 @@
   },
   "devDependencies": {
     "@aurelia/webpack-loader": "latest",
+    "@types/chai": "^4.3.14",
+    "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "aurelia-bootstrapper": "^2.4.0",
     "autoprefixer": "^10.4.14",
+    "chai": "^4.4.1",
+    "chai-as-promised": "^7.1.1",
     "css-loader": "^6.10.0",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.57.0",
@@ -45,8 +51,11 @@
     "postcss-loader": "^7.3.3",
     "sass": "^1.72.0",
     "sass-loader": "^14.1.1",
+    "sinon": "^17.0.1",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.5.1",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "webpack": "^5.90.3",
     "webpack-bundle-analyzer": "^4.9.0",

@@ -9,11 +9,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "importHelpers": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "include": [
-    "test",
-    "src"
+    "src",
+    "test"
   ],
   "files": [
     "src/lib/bindings.d.ts",
