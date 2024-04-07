@@ -1,9 +1,9 @@
 import {newInstanceOf} from '@aurelia/kernel';
 
 // Local modules.
-import {Request, Response} from '../lib/http';
-import {Storage}           from '../lib/storage';
-import {openExtBrowser}    from '../lib/utils';
+import {AppRequest, AppResponse} from '../webview/http';
+import {AppStorage}              from '../webview/storage';
+import {openExtBrowser}          from '../webview/utils';
 
 type GithubRepo = {
   [T: string]: string
@@ -23,17 +23,17 @@ export class Projects {
 
   public openExternal = openExtBrowser;
 
-  constructor(@newInstanceOf(Request) private request: Request) {}
+  constructor(@newInstanceOf(AppRequest) private request: AppRequest) {}
 
   /**
    * @inheritdoc
    */
   async created() {
-    let repos: ProjectRepo[] = await Storage.get('projects');
+    let repos: ProjectRepo[] = await AppStorage.get('projects');
 
     // Query data from Github API
     if (!repos) {
-      const res: Response = await this.request.get('https://api.github.com/users/nuxy/repos?sort=pushed');
+      const res: AppResponse = await this.request.get('https://api.github.com/users/nuxy/repos?sort=pushed');
       const body: GithubRepo[] = JSON.parse(res.Body);
 
       // .. parse values
@@ -47,7 +47,7 @@ export class Projects {
       });
 
       // .. and cache locally.
-      await Storage.set('projects', repos);
+      await AppStorage.set('projects', repos);
     }
 
     // Limit results to 8 items.

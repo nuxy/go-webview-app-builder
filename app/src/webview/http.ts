@@ -18,7 +18,7 @@ export type RequestHeaders = {
   [T: string]: string
 }
 
-export type Response = {
+export type AppResponse = {
   Status: number,
   Headers: RequestHeaders,
   Body: string
@@ -27,7 +27,7 @@ export type Response = {
 /**
  * Provides HTTP client methods (Go WebView bindings and SPA fallback).
  */
-export class Request {
+export class AppRequest {
 
   /**
    * Make HTTP GET request to a remote source.
@@ -36,11 +36,11 @@ export class Request {
    *   Request URL/URI location.
    *
    * @example
-   *   const response: Response = await Request.get('https://domain.com/index.html');
+   *   const response: AppResponse = await Request.get('https://domain.com/index.html');
    *
-   * @return {Promise<Response>}
+   * @return {Promise<AppResponse>}
    */
-  async get(url: string): Promise<Response> {
+  async get(url: string): Promise<AppResponse> {
     return (webViewBindExists('browser_HttpGet'))
       ? this.normalize(await window.browser_HttpGet(url))
       : this.send('GET', url);
@@ -53,11 +53,11 @@ export class Request {
    *   Request URL/URI location.
    *
    * @example
-   *   const response: Response = await Request.head('https://domain.com/index.html');
+   *   const response: AppResponse = await Request.head('https://domain.com/index.html');
    *
-   * @return {Promise<Response>}
+   * @return {Promise<AppResponse>}
    */
-  async head(url: string): Promise<Response> {
+  async head(url: string): Promise<AppResponse> {
     return (webViewBindExists('browser_HttpHead'))
       ? this.normalize(await window.browser_HttpHead(url))
       : this.send('HEAD', url);
@@ -76,7 +76,7 @@ export class Request {
    *   Request body (optional).
    *
    * @example
-   *   const response: Response = await Request.post(
+   *   const response: AppResponse = await Request.post(
    *     'https://domain.com/index.html',
    *     {
    *       'Accept': 'text/html',
@@ -92,9 +92,9 @@ export class Request {
    *     }
    *   );
    *
-   * @return {Promise<Response>}
+   * @return {Promise<AppResponse>}
    */
-  async post(url: string, headers: RequestHeaders = {}, body?: RequestBody | string): Promise<Response> {
+  async post(url: string, headers: RequestHeaders = {}, body?: RequestBody | string): Promise<AppResponse> {
     if (webViewBindExists('browser_HttpPost')) {
 
       // Convert data to Go bindings supported string types (e.g. JSON).
@@ -122,9 +122,9 @@ export class Request {
    * @param {String|Object|undefined} body
    *   Request body (optional).
    *
-   * @return {Promise<Response>}
+   * @return {Promise<AppResponse>}
    */
-  send(method: string, url: string, headers: RequestHeaders = {}, body?: RequestBody | string): Promise<Response> {
+  send(method: string, url: string, headers: RequestHeaders = {}, body?: RequestBody | string): Promise<AppResponse> {
     let data: FormData | string;
 
     if (method === 'POST' && typeof body === 'object') {
@@ -166,9 +166,9 @@ export class Request {
    * @param {String} json
    *   JSON string (Request encoded).
    *
-   * @return {Response}
+   * @return {AppResponse}
    */
-  private normalize(json): Response {
+  private normalize(json): AppResponse {
     return JSON.parse(json);
   }
 }

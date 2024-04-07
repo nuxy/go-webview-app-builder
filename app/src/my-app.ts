@@ -6,7 +6,7 @@ import {About}    from './screens/about';
 import {Game}     from './screens/game';
 import {Projects} from './screens/projects';
 
-import {webViewBindExists} from './lib/utils';
+import {webViewBindExists} from './webview/utils';
 
 export class MyApp implements IRouteableComponent {
   static routes: IRoute[] = [

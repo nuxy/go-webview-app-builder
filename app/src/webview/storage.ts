@@ -17,7 +17,7 @@ export type StorageData = {
 /**
  * Provides methods for storing data (Go WebView bindings and SPA fallback).
  */
-export class Storage {
+export class AppStorage {
 
   /**
    * Return values for a given key.
@@ -28,7 +28,7 @@ export class Storage {
    * @return {*|void}
    *
    * @example
-   *   const data: StorageData = await Storage.get('foo');
+   *   const data: StorageData = await AppStorage.get('foo');
    */
   static async get(key: string): Promise<any> {
     if (typeof key === 'string') {
@@ -36,7 +36,7 @@ export class Storage {
         ? await window.browser_StorageGet(key)
         : await sessionStorage.getItem(key);
 
-      if (value && Storage.isValidJson(value)) {
+      if (value && AppStorage.isValidJson(value)) {
         return JSON.parse(value);
       }
     }
@@ -54,7 +54,7 @@ export class Storage {
    * @return {void}
    *
    * @example
-   *   await Storage.set('foo', {bar: 'baz'}: StorageData);
+   *   await AppStorage.set('foo', {bar: 'baz'}: StorageData);
    */
   static async set(key: string, value: any): Promise<void> {
     if (typeof key === 'string') {
@@ -75,7 +75,7 @@ export class Storage {
    * @return {void}
    *
    * @example
-   *   await Storage.remove('foo');
+   *   await AppStorage.remove('foo');
    */
   static async remove(key: string): Promise<void> {
     if (typeof key === 'string') {
@@ -94,7 +94,7 @@ export class Storage {
    * @return {Boolean|void}
    *
    * @example
-   *   const result = Storage.isValidJson({
+   *   const result = AppStorage.isValidJson({
    *     "foo": "bar",
    *     "baz": "qux"
    *   });

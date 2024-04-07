@@ -18,7 +18,7 @@
     "test"
   ],
   "files": [
-    "src/lib/bindings.d.ts",
+    "src/webview/bindings.d.ts",
     "src/resource.d.ts"
   ]
 }
