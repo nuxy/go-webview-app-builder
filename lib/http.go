@@ -11,16 +11,14 @@ package lib
 
 import (
 	"bytes"
-	"io"
 	"encoding/json"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
 )
 
-//
 // Request declared data types.
-//
 type Response struct {
 	Status  int
 	Headers http.Header
@@ -31,17 +29,13 @@ type Request struct {
 	data Response
 }
 
-//
 // NewRequest creates a HTTP client instance.
-//
 func NewRequest() *Request {
 	request := &Request{}
 	return request
 }
 
-//
 // Make HTTP GET request to a remote source.
-//
 func (request *Request) Get(URL string) *Request {
 	validateURL(URL)
 
@@ -59,7 +53,7 @@ func (request *Request) Get(URL string) *Request {
 		log.Fatal(err)
 	}
 
-	request.data = Response {
+	request.data = Response{
 		Status:  resp.StatusCode,
 		Headers: resp.Header,
 		Body:    string(body),
@@ -68,9 +62,7 @@ func (request *Request) Get(URL string) *Request {
 	return request
 }
 
-//
 // Make HTTP Head request to a remote source.
-//
 func (request *Request) Head(URL string) *Request {
 	validateURL(URL)
 
@@ -82,7 +74,7 @@ func (request *Request) Head(URL string) *Request {
 
 	defer resp.Body.Close()
 
-	request.data = Response {
+	request.data = Response{
 		Status:  resp.StatusCode,
 		Headers: resp.Header,
 		Body:    "",
@@ -91,9 +83,7 @@ func (request *Request) Head(URL string) *Request {
 	return request
 }
 
-//
 // Make HTTP POST request to a remote source.
-//
 func (request *Request) Post(URL string, headers string, body string) *Request {
 	validateURL(URL)
 
@@ -124,7 +114,7 @@ func (request *Request) Post(URL string, headers string, body string) *Request {
 		log.Fatal(err)
 	}
 
-	request.data = Response {
+	request.data = Response{
 		Status:  resp.StatusCode,
 		Headers: resp.Header,
 		Body:    string(_body),
@@ -133,16 +123,12 @@ func (request *Request) Post(URL string, headers string, body string) *Request {
 	return request
 }
 
-//
 // Returns unmashaled Request response.
-//
 func (request *Request) Response() Response {
 	return request.data
 }
 
-//
 // Returns Request response as JSON.
-//
 func (request *Request) JsonResponse() string {
 	b, err := json.Marshal(request.data)
 
@@ -153,9 +139,7 @@ func (request *Request) JsonResponse() string {
 	return string(b)
 }
 
-//
 // Converts a dynamic JSON string to a map.
-//
 func parseJSON(rawJSON string) map[string]interface{} {
 	var data interface{}
 
@@ -168,9 +152,7 @@ func parseJSON(rawJSON string) map[string]interface{} {
 	return data.(map[string]interface{})
 }
 
-//
 // Checks for a valid URL structure, fail otherwise.
-//
 func validateURL(rawURL string) {
 	_, err := url.ParseRequestURI(rawURL)
 

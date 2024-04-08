@@ -16,16 +16,12 @@ import (
 	"github.com/pkg/browser"
 )
 
-//
 // Opens URL in the OS default web browser.
-//
 func OpenExtBrowser(url string) {
 	browser.OpenURL(url)
 }
 
-//
 // Converts a valid string value to boolean.
-//
 func StrToBool(v string) bool {
 	_v, err := strconv.ParseBool(v)
 

@@ -16,9 +16,7 @@ import (
 	"text/template"
 )
 
-//
 // Generate HTML document, returns markup as string.
-//
 func GenHtmlMarkup(appBundle string, indexTmpl string) string {
 	appBundle = strings.TrimSpace(appBundle)
 
@@ -45,9 +43,7 @@ func GenHtmlMarkup(appBundle string, indexTmpl string) string {
 	return builder.String()
 }
 
-//
 // Generate browser HTTP Data URL (HTTP data:)
-//
 func encodeData(v string, mimeType string) string {
 	if mimeType == "" {
 		mimeType = "text/html"

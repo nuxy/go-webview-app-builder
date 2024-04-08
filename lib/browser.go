@@ -16,9 +16,7 @@ import (
 	webview "github.com/webview/webview_go"
 )
 
-//
 // Browser declared data types.
-//
 type BrowserSettings struct {
 	Title  string
 	Height int
@@ -33,12 +31,10 @@ type Browser struct {
 	settings BrowserSettings
 }
 
-type BrowserFuncVoid   func(arg ...string)
+type BrowserFuncVoid func(arg ...string)
 type BrowserFuncReturn func(arg ...string) string
 
-//
 // NewBrowser creates a WebView instance.
-//
 func NewBrowser(htmlMarkup string, settings BrowserSettings) *Browser {
 	browser := &Browser{settings: settings}
 	browser.document = htmlMarkup
@@ -46,9 +42,7 @@ func NewBrowser(htmlMarkup string, settings BrowserSettings) *Browser {
 	return browser
 }
 
-//
 // Initialize a new WebView window.
-//
 func (browser *Browser) init() {
 	var webviewHint webview.Hint = webview.HintFixed
 
@@ -62,23 +56,17 @@ func (browser *Browser) init() {
 	browser.WebView.SetHtml(browser.document)
 }
 
-//
 // Launch the WebView window.
-//
 func (browser *Browser) Open() {
 	browser.WebView.Run()
 }
 
-//
 // Close the WebView window.
-//
 func (browser *Browser) Close() {
 	browser.WebView.Terminate()
 }
 
-//
 // Bind JavaScript function to DOM Window (no return, void).
-//
 func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) {
 	c := func(arg ...string) {
 		browser.logEvent(funcName, strings.Join(arg, ", "))
@@ -89,9 +77,7 @@ func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) 
 	browser.WebView.Bind(funcName, c)
 }
 
-//
 // Bind JavaScript function to DOM Window (return string).
-//
 func (browser *Browser) BindFuncReturn(funcName string, callback BrowserFuncReturn) {
 	c := func(arg ...string) string {
 		browser.logEvent(funcName, strings.Join(arg, ", "))
@@ -102,11 +88,9 @@ func (browser *Browser) BindFuncReturn(funcName string, callback BrowserFuncRetu
 	browser.WebView.Bind(funcName, c)
 }
 
-//
 // Output event to standard logger.
-//
 func (browser *Browser) logEvent(arg ...string) {
-	if (browser.settings.Debug) {
+	if browser.settings.Debug {
 		if len(arg) > 1 && len(arg[1]) > 1 {
 			log.Printf("Function '%s' called with '%s'", arg[0], arg[1])
 		} else {

@@ -22,23 +22,19 @@ var appBundle []byte
 var indexTmpl []byte
 
 // Makefile linker variables
-var Version  string
+var Version string
 var DevTools string
 
-//
 // Browser settings (defaults).
-//
-var settings = lib.BrowserSettings {
-	Title: "WebView App",
+var settings = lib.BrowserSettings{
+	Title:  "WebView App",
 	Height: 590,
-	Width: 620,
+	Width:  620,
 	Resize: true,
-	Debug: lib.StrToBool(DevTools),
+	Debug:  lib.StrToBool(DevTools),
 }
 
-//
 // Let's get this party started.
-//
 func main() {
 	storage := lib.NewStorage()
 	request := lib.NewRequest()
