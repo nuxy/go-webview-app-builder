@@ -103,21 +103,25 @@ func main() {
 import {webViewBindExists} from './webview/utils';
 
 // Concatenate string arguments.
-async function concatStrings(v1: string, v2: string, v3: string): Promise<string> {
+async function concatStrings(v1, v2, v3) {
   const bindingName = 'browser_ConcatStrings';
 
-  return (webViewBindExists(bindingName))
-    ? await window[bindingName](v1, v2, v3)
-    : Promise.reject(`Go receiver "${bindingName}" doesn't exist`);
+  if (webViewBindExists(bindingName)) {
+    return await window[bindingName](v1, v2, v3);
+  }
+
+  throw new Error(`Go receiver "${bindingName}" doesn't exist`);
 }
 
 // Process the string argument.
-async function executeAndVoid(v: string): Promise<void> {
+async function executeAndVoid(v) {
   const bindingName = 'browser_ProcessString';
 
-  return (webViewBindExists(bindingName))
-    ? await window[bindingName](v)
-    : Promise.reject(`Go receiver "${bindingName}" doesn't exist`);
+  if (webViewBindExists(bindingName)) {
+    return await window[bindingName](v);
+  }
+
+  throw new Error(`Go receiver "${bindingName}" doesn't exist`);
 }
 ```
 
