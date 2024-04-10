@@ -1,6 +1,19 @@
 # WebView App Builder
 
-Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView) :warning: Work in Progress :warning:
+Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView)
+
+## The Problem
+
+Due to browser [Cross-origin resource sharing](https://www.w3.org/TR/2020/SPSD-cors-20200602) (CORS) restrictions WebView application sources and related data **must be served from a privileged authority** that defines a properly configured `Access-Control-Allow-Origin` header. In an embedded source application, where HTTP sources are served locally, the WebView uses an unprivileged authority (`about:blank`) that results with errors when using the [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or [Cookie Store](https://developer.mozilla.org/en-US/docs/Web/API/Cookie_Store) APIs.
+
+This package does the following to workaround this:
+
+1. Provides [http](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/http.ts) and [storage](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/storage.ts) interfaces to support a bidirectional communication between JavaScript _senders_ and Go defined app _receivers_.
+2. Embeds all fonts, images, sounds, etc.. as [Base64](https://en.wikipedia.org/wiki/Base64) encoded strings to be used in CSS/JavaScript includes.
+3. Transpiles SPA sources to a single file bundle which is front-loaded on Go application initialization using a [`data:`](https://developer.mozilla.org/en-US/docs/web/http/basics_of_http/data_urls) URL
+4. Compiles Go application and packages SPA sources into a small, single file binary.
+
+This creates a fast loading, dynamically-driven, desktop application running your favorite SPA framework.
 
 ## Dependencies
 
@@ -9,7 +22,15 @@ Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Sing
 
 ### Debian/Ubuntu
 
+The following dependencies are required in order to build for Debian-based operating systems.  For alternate OS's (e.g. BSD, Windows) refer to the [webview preqequisites](https://github.com/webview/webview?tab=readme-ov-file#prerequisites) install instructions.
+
     $ apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev
+
+## Quick and Easy
+
+Transpile the SPA, compile the Go application, and run the example in one command:
+
+    $ make
 
 ## Build from source
 
@@ -42,9 +63,10 @@ Once compiled it should be as easy as..
 ## Go application structure
 
 ```text
-app         // SPA sources (Aurelia 2 framework example)
-lib         // Go package dependencies.
-app.go      // main
+app             // SPA sources (Aurelia 2 framework example)
+app/src/webview // JS libraries (Go app bindings, e.g. senders)
+lib             // Go package dependencies.
+app.go          // main (Go app bindings, e.g receivers)
 ```
 
 ## Supported app bindings
@@ -63,6 +85,27 @@ The following `window` [functions](https://github.com/nuxy/go-webview-app-builde
 | `browser_StorageSet`     | Add data to be stored in-memory cache.      | Storage API |
 | `browser_StorageGet`     | Returns data from in-memory cache.          | Storage API |
 | `browser_Terminate`      | Close the WebView (terminate session).      | N/A         |
+
+## Usage
+
+### Fetch a remote URL resource
+
+```javascript
+import {AppRequest} from './webview/http';
+import {AppStorage} from './webview/storage';
+
+const appReq = new AppRequest();
+const result = await appReq.get('https://domain.com/api');
+const {Status, Headers, Body} = result;
+
+// parse value, cache locally.
+const value = JSON.parse(Body).uuid;
+
+await AppStorage.set('api-uuid', value);
+
+// .. and later in code
+const uuid = AppStorage.set('api-uuid');
+```
 
 ## Adding custom bindings
 
