@@ -21,6 +21,8 @@
 export function openExtBrowser(url: string): void {
   if (webViewBindExists('browser_OpenExtBrowser')) {
     window.browser_OpenExtBrowser(url);
+  } else {
+    window.location.href = url;
   }
 }
 

@@ -8,17 +8,37 @@ describe('Utils module', function() {
     });
 
     describe('openExtBrowser', function() {
-      test('should call function', async function() {
-        window['browser_OpenExtBrowser'] = jest.fn();
+      describe('binding', function() {
+        test('should call function', async function() {
+          window['browser_OpenExtBrowser'] = jest.fn();
 
-        jest.spyOn(utils, 'webViewBindExists')
-          .mockImplementation(() => true);
+          jest.spyOn(utils, 'webViewBindExists')
+            .mockImplementation(() => true);
 
-        const method = jest.spyOn(window, 'browser_OpenExtBrowser');
+          const method = jest.spyOn(window, 'browser_OpenExtBrowser');
 
-        utils.openExtBrowser('https://domain.com/api');
+          utils.openExtBrowser('https://domain.com/api');
 
-        expect(method).toHaveBeenCalled();
+          expect(method).toHaveBeenCalled();
+        });
+      });
+
+      describe('fallback', function() {
+        test('should return object', async function() {
+          jest.spyOn(utils, 'webViewBindExists')
+            .mockImplementation(() => false);
+
+          jest.spyOn(window, 'window', 'get')
+            .mockImplementation(() => ({ // @ts-ignore
+              location: {
+                href: 'https://domain.com/api'
+              }
+            }));
+
+          utils.openExtBrowser('https://domain.com/api');
+
+          expect(window.location.href).toEqual('https://domain.com/api');
+        });
       });
     });
 
