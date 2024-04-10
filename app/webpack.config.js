@@ -1,4 +1,5 @@
 const Dotenv                 = require('dotenv-webpack');
+const HtmlWebpackPlugin      = require('html-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const {resolve}              = require('path');
 
@@ -63,6 +64,7 @@ module.exports = function(env, {analyze}) {
       ]
     },
     plugins: [
+      new HtmlWebpackPlugin({template: 'index.html'}),
       new Dotenv({path: `./.env${production ? '' : '.' + 'development'}`}),
       analyze && new BundleAnalyzerPlugin()
     ].filter(p => p),
