@@ -4,6 +4,10 @@ import * as utils                from '../../../src/webview/utils';
 
 describe('AppStorage module', function() {
   describe('Static methods', function() {
+    afterEach(function() {
+      jest.restoreAllMocks();
+    });
+
     describe('get', function() {
       const data = {foo: 'bar'};
 

@@ -3,6 +3,10 @@ import * as utils from '../../../src/webview/utils';
 
 describe('Utils module', function() {
   describe('Functions', function() {
+    afterEach(function() {
+      jest.restoreAllMocks();
+    });
+
     describe('openExtBrowser', function() {
       test('should call function', async function() {
         window['browser_OpenExtBrowser'] = jest.fn();

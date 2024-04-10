@@ -6,6 +6,10 @@ describe('AppRequest module', function() {
   describe('Instance methods', function() {
     const url = 'https://domain.com/api';
 
+    afterEach(function() {
+      jest.restoreAllMocks();
+    });
+
     describe('get', function() {
       const status  = 200;
       const headers = {'Content-Type': 'text/html'};
