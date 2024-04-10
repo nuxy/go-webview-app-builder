@@ -1,4 +1,4 @@
-# WebView App Builder
+# WebView App Builder [![](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/nuxy/go-webview-app-builder) [![](https://img.shields.io/github/v/release/nuxy/go-webview-app-builder)](https://github.com/nuxy/go-webview-app-builder/releases)
 
 Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView)
 
@@ -10,7 +10,7 @@ This package does the following to workaround this:
 
 1. Provides [http](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/http.ts) and [storage](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/storage.ts) interfaces to support a bidirectional communication between JavaScript _senders_ and Go defined app _receivers_.
 2. Embeds all fonts, images, sounds, etc.. as [Base64](https://en.wikipedia.org/wiki/Base64) encoded strings to be used in CSS/JavaScript includes.
-3. Transpiles SPA sources to a single file bundle which is front-loaded on Go application initialization using a [`data:`](https://developer.mozilla.org/en-US/docs/web/http/basics_of_http/data_urls) URL
+3. Transpiles SPA sources to a single file bundle which is front-loaded on Go application initialization using [`data:`](https://developer.mozilla.org/en-US/docs/web/http/basics_of_http/data_urls)
 4. Compiles Go application and packages SPA sources into a small, single file binary.
 
 This creates a fast loading, dynamically-driven, desktop application running your favorite SPA framework.
