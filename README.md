@@ -4,14 +4,14 @@ Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Sing
 
 ## The Problem
 
-Due to browser [Cross-origin resource sharing](https://www.w3.org/TR/2020/SPSD-cors-20200602) (CORS) restrictions WebView application sources and related data **must be served from a privileged authority** that defines a properly configured `Access-Control-Allow-Origin` header. In an embedded source application, where HTTP sources are served locally, the WebView uses an unprivileged authority (`about:blank`) that results with errors when using the [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or [Cookie Store](https://developer.mozilla.org/en-US/docs/Web/API/Cookie_Store) APIs.
+Due to browser [Cross-origin resource sharing](https://www.w3.org/TR/2020/SPSD-cors-20200602) (CORS) restrictions WebView application sources and related data **must be served from a privileged authority** that defines a properly configured `Access-Control-Allow-Origin` header. In an embedded source application, where HTTP sources are served locally, the WebView uses an unprivileged authority `about:blank` that results with errors when using [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or [Cookie Store](https://developer.mozilla.org/en-US/docs/Web/API/Cookie_Store) APIs.
 
 This package does the following to workaround this:
 
-1. Provides [http](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/http.ts) and [storage](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview/storage.ts) interfaces to support a bidirectional communication between JavaScript _senders_ and Go defined app _receivers_.
+1. Provides [interfaces](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview) to bridge communication between JavaScript [_senders_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#javascript-sender-example) and Go app [_receivers_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#go-app-receiver-example).
 2. Embeds all fonts, images, sounds, etc.. as [Base64](https://en.wikipedia.org/wiki/Base64) encoded strings to be used in CSS/JavaScript includes.
 3. Transpiles SPA sources to a single file bundle which is front-loaded on Go application initialization using [`data:`](https://developer.mozilla.org/en-US/docs/web/http/basics_of_http/data_urls)
-4. Compiles Go application and packages SPA sources into a small, single file binary.
+4. Compiles Go application and packages SPA sources into a small, self contained binary.
 
 This creates a fast loading, dynamically-driven, desktop application running your favorite SPA framework.
 
@@ -88,7 +88,7 @@ The following `window` [functions](https://github.com/nuxy/go-webview-app-builde
 
 ## Usage
 
-### Fetch a remote URL resource
+The following illustrates the most typical use case.
 
 ```javascript
 import {AppRequest} from './webview/http';
@@ -167,6 +167,14 @@ async function executeAndVoid(v) {
   throw new Error(`Go receiver "${bindingName}" doesn't exist`);
 }
 ```
+
+## Contributions
+
+If you fix a bug, or have a code you want to contribute, please send a pull-request with your changes. (Note: Before committing your code please ensure that you run [golint](https://github.com/golang/lint) and [gofmt](https://pkg.go.dev/cmd/gofmt) on contributed files).
+
+## Versioning
+
+This package is maintained under the [Semantic Versioning](https://semver.org) guidelines.
 
 ## License and Warranty
 
