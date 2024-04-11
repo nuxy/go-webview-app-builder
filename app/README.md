@@ -18,7 +18,7 @@ Launch a development server instance accessible at [http://localhost:9000](http:
 
     $ npm run start
 
-Run [Mocha](https://mochajs.org) integration tests ([JS libraries only](https://github.com/nuxy/go-webview-app-builder/tree/develop/app/src/lib)):
+Run [Jest](https://jestjs.io) integration tests ([JS libraries only](https://github.com/nuxy/go-webview-app-builder/tree/develop/app/src/webview)):
 
     $ npm run test
 
