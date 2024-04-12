@@ -2,6 +2,8 @@
 
 Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView)
 
+![Preview](https://raw.githubusercontent.com/nuxy/go-webview-app-builder/master/example.png)
+
 ## The Problem
 
 Due to browser [Cross-origin resource sharing](https://www.w3.org/TR/2020/SPSD-cors-20200602) (CORS) restrictions WebView application sources and related data **must be served from a privileged authority** that defines a properly configured `Access-Control-Allow-Origin` header. In an embedded source application, where HTTP sources are served locally, the WebView uses an unprivileged authority `about:blank` that results with errors when using [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), [Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API), or [Cookie Store](https://developer.mozilla.org/en-US/docs/Web/API/Cookie_Store) APIs.
