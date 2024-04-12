@@ -1,3 +1,15 @@
 #about {
+  table, th, td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
 
+  table {
+    width: 100%;
+
+    td {
+      padding: 4px 6px;
+    }
+  }
 }

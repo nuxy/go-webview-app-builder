@@ -1,5 +1,71 @@
 <section id="about">
   <h2 class="title">${title}</h2>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>This is an example of a <a click.trigger="openExternal(aureliaUrl)" title="Open Website: ${aureliaUrl = 'https://docs.aurelia.io'}">Aurelia 2</a> application (SPA) running in a desktop <a click.trigger="openExternal(webViewUrl)" title="Open Website: ${webViewUrl = 'https://en.wikipedia.org/wiki/WebView'}">WebView</a>.</p>
+
+  <h3>Supported app bindings</h3>
+
+  <p>The following <code>window</code> functions are accessible when the app is executed in a Go context. When run using <a click.trigger="openExternal(npmStartUrl)" title="Open Website: ${npmStartUrl = 'https://docs.npmjs.com/cli/v7/commands/npm-start'}">NPM</a> the functions fallback to local equivalents, if supported.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Fallback</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>browser_AppVersion</code></td>
+        <td>Returns the Go application defined version.</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td><code>browser_HttpGet</code></td>
+        <td>Make HTTP GET request to a remote source.</td>
+        <td><a click.trigger="openExternal(fetchApiUrl)" title="Open Website: ${fetchApiUrl = 'https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API'}">Fetch API</a></td>
+      </tr>
+      <tr>
+        <td><code>browser_HttpHead</code></td>
+        <td>Make HTTP HEAD request to a remote source.</td>
+        <td>Fetch API</td>
+      </tr>
+      <tr>
+        <td><code>browser_HttpPost</code></td>
+        <td>Make HTTP POST request to a remote source.</td>
+        <td>Fetch API</td>
+      </tr>
+      <tr>
+        <td><code>browser_Navigate</code></td>
+        <td>Store data that references current screen.</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td><code>browser_OpenExtBrowser</code></td>
+        <td>Opens URL in an external web browser.</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td><code>browser_StorageDelete</code></td>
+        <td>Removes stored item from in-memory cache.</td>
+        <td><a click.trigger="openExternal(storageApiUrl)" title="Open Website: ${fetchApiUrl = 'https://developer.mozilla.org/en-US/docs/Web/API/Storage_API'}">Storage API</a></td>
+      </tr>
+      <tr>
+        <td><code>browser_StorageSet</code></td>
+        <td>Add data to be stored in-memory cache.</td>
+        <td>Storage API</td>
+      </tr>
+      <tr>
+        <td><code>browser_StorageGet</code></td>
+        <td>Returns data from in-memory cache.</td>
+        <td>Storage API</td>
+      </tr>
+      <tr>
+        <td><code>browser_Terminate</code></td>
+        <td>Close the WebView (terminate session).</td>
+        <td>N/A</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
