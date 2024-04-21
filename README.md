@@ -66,6 +66,7 @@ Once compiled it should be as easy as..
 
 ```text
 app             // SPA sources (Aurelia 2 framework example)
+app/index.tmpl  // File to be imported into the WebView (via [webview_go](https://github.com/webview/webview_go))
 app/src/webview // JS libraries (Go app bindings, e.g. senders)
 lib             // Go package dependencies.
 app.go          // main (Go app bindings, e.g receivers)
