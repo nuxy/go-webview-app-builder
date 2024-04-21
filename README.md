@@ -66,7 +66,7 @@ Once compiled it should be as easy as..
 
 ```text
 app             // SPA sources (Aurelia 2 framework example)
-app/index.tmpl  // File to be imported into the WebView (via [webview_go](https://github.com/webview/webview_go))
+app/index.tmpl  // File to be imported into the WebView (via webview_go)
 app/src/webview // JS libraries (Go app bindings, e.g. senders)
 lib             // Go package dependencies.
 app.go          // main (Go app bindings, e.g receivers)
@@ -170,6 +170,10 @@ async function executeAndVoid(v) {
   throw new Error(`Go receiver "${bindingName}" doesn't exist`);
 }
 ```
+
+## References
+
+- [webview_go](https://github.com/webview/webview_go) - Go language binding for the webview library.
 
 ## Contributions
 
