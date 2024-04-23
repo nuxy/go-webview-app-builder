@@ -27,16 +27,17 @@
   "author": "Marc S. Brooks <devel@mbrooks.info> (https://mbrooks.info)",
   "license": "MIT",
   "dependencies": {
-    "@aurelia/router": "latest",
-    "aurelia": "latest",
-    "slot-machine-gen": "latest"
+    "@aurelia/router": "2.0.0-beta.14",
+    "aurelia": "2.0.0-beta.14",
+    "slot-machine-gen": "latest",
+    "webform-toolkit": "latest"
   },
   "devDependencies": {
-    "@aurelia/webpack-loader": "latest",
+    "@aurelia/webpack-loader": "2.0.0-beta.14",
+    "@aurelia/ts-jest": "2.0.0-beta.14",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
-    "aurelia-bootstrapper": "^2.4.0",
     "autoprefixer": "^10.4.14",
     "css-loader": "^6.10.0",
     "dotenv-webpack": "^8.0.1",
