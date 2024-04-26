@@ -107,7 +107,7 @@ const value = JSON.parse(Body).uuid;
 await AppStorage.set('api-uuid', value);
 
 // .. and later in code
-const uuid = AppStorage.set('api-uuid');
+const uuid = AppStorage.get('api-uuid');
 ```
 
 ## Adding custom bindings
