@@ -171,6 +171,15 @@ async function executeAndVoid(v) {
 }
 ```
 
+## Does this support other JavaScript frameworks?
+
+**It should**, as long as the following requirements are met:
+
+1. The single-page application uses [TypeScript](https://www.typescriptlang.org), [Jest](https://jestjs.io), and [Webpack](https://webpack.js.org).  See [`tsconfig`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/tsconfig.json) and [`webpack.config`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/webpack.config.js) for build environment details.
+2. Assets are encoded as [Base64 data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) and embed in its corresponding import (e.g. [Script](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/screens/game-images.js]), [Stylesheet](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/resources/partials/_fonts.scss), HTML)
+3. Webpack writes application _output to a single bundle_ file `/dist/main.bundle.js` which is parsed by Go in [`index.tmpl`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/index.tmpl)
+4. The [webview JavaScript libraries](https://github.com/nuxy/go-webview-app-builder/tree/master/app/src/webview), and related [tests](https://github.com/nuxy/go-webview-app-builder/tree/master/app/test/unit/webview), exist in their current respective locations.
+
 ## References
 
 - [webview_go](https://github.com/webview/webview_go) - Go language binding for the webview library.
