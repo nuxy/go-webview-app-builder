@@ -97,11 +97,12 @@ The following illustrates the most typical use case.
 import {AppRequest} from './webview/http';
 import {AppStorage} from './webview/storage';
 
+// Fetch remote resource..
 const appReq = new AppRequest();
 const result = await appReq.get('https://domain.com/api');
 const {Status, Headers, Body} = result;
 
-// parse value, cache locally.
+// parse result, cache locally.
 const value = JSON.parse(Body).uuid;
 
 await AppStorage.set('api-uuid', value);
@@ -175,10 +176,10 @@ async function executeAndVoid(v) {
 
 **It should**, as long as the following requirements are met:
 
-1. The single-page application uses [TypeScript](https://www.typescriptlang.org), [Jest](https://jestjs.io), and [Webpack](https://webpack.js.org).  See [`tsconfig`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/tsconfig.json) and [`webpack.config`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/webpack.config.js) for build environment details.
-2. Assets are encoded as [Base64 data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) and embed in its corresponding import (e.g. [Script](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/screens/game-images.js]), [Stylesheet](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/resources/partials/_fonts.scss), HTML)
-3. Webpack writes application _output to a single bundle_ file `/dist/main.bundle.js` which is parsed by Go in [`index.tmpl`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/index.tmpl)
-4. The [webview JavaScript libraries](https://github.com/nuxy/go-webview-app-builder/tree/master/app/src/webview), and related [tests](https://github.com/nuxy/go-webview-app-builder/tree/master/app/test/unit/webview), exist in their current respective locations.
+1. The application uses [TypeScript](https://www.typescriptlang.org), [Jest](https://jestjs.io), and [Webpack](https://webpack.js.org).  See [`tsconfig`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/tsconfig.json) and [`webpack.config`](https://github.com/nuxy/go-webview-app-builder/blob/master/app/webpack.config.js) for build details.
+2. Assets are encoded as [Base64 data URI](https://en.wikipedia.org/wiki/Data_URI_scheme) and embed in its corresponding import (e.g. [Script](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/screens/game-images.js]), [Style Sheet](https://github.com/nuxy/go-webview-app-builder/blob/master/app/src/resources/partials/_fonts.scss), HTML)
+3. Webpack writes application _output to a single bundle_ file `/dist/main.bundle.js` which is [parsed by Go](https://github.com/nuxy/go-webview-app-builder/blob/master/app.go#L41).
+4. The [webview JavaScript libraries](https://github.com/nuxy/go-webview-app-builder/tree/master/app/src/webview) and related [tests](https://github.com/nuxy/go-webview-app-builder/tree/master/app/test/unit/webview) exist in their current respective locations.
 
 ## References
 
