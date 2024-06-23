@@ -10,7 +10,7 @@ Due to browser [Cross-origin resource sharing](https://www.w3.org/TR/2020/SPSD-c
 
 This package does the following to workaround this:
 
-1. Provides [interfaces](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/src/webview) to bridge communication between JavaScript [_senders_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#javascript-sender-example) and Go app [_receivers_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#go-app-receiver-example).
+1. Provides [interfaces](https://github.com/nuxy/go-webview-app-builder/blob/develop/app/examples/aurelia/src/webview) to bridge communication between JavaScript [_senders_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#javascript-sender-example) and Go app [_receivers_](https://github.com/nuxy/go-webview-app-builder?tab=readme-ov-file#go-app-receiver-example).
 2. Embeds all fonts, images, sounds, etc.. as [Base64](https://en.wikipedia.org/wiki/Base64) encoded strings to be used in CSS/JavaScript includes.
 3. Transpiles SPA sources to a single file bundle which is front-loaded on Go application initialization using [`data:`](https://developer.mozilla.org/en-US/docs/web/http/basics_of_http/data_urls)
 4. Compiles Go application and packages SPA sources into a small, self contained binary.
@@ -65,11 +65,11 @@ Once compiled it should be as easy as..
 ## Go application structure
 
 ```text
-app             // SPA sources (Aurelia 2 framework example)
-app/index.tmpl  // File to be imported into the WebView (via webview_go)
-app/src/webview // JS libraries (Go app bindings, e.g. senders)
-lib             // Go package dependencies.
-app.go          // main (Go app bindings, e.g receivers)
+app                              // SPA sources (Aurelia 2 framework example)
+app/examples/aurelia/index.tmpl  // File to be imported into the WebView (via webview_go)
+app/examples/aurelia/src/webview // JS libraries (Go app bindings, e.g. senders)
+lib                              // Go package dependencies.
+app.go                           // main (Go app bindings, e.g receivers)
 ```
 
 ## Supported app bindings

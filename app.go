@@ -15,10 +15,10 @@ import (
 	"github.com/nuxy/go-webview-app-builder/lib"
 )
 
-//go:embed app/dist/main.bundle.js
+//go:embed app/examples/aurelia/dist/main.bundle.js
 var appBundle []byte
 
-//go:embed app/index.tmpl
+//go:embed app/examples/aurelia/index.tmpl
 var indexTmpl []byte
 
 // Makefile linker variables
@@ -42,7 +42,7 @@ func main() {
 	browser := lib.NewBrowser(htmlDoc, settings)
 
 	// Define browser WebView global bindings.
-	// @see app/src/webview/bindings.d.ts
+	// @see app/examples/aurelia/webview/bindings.d.ts
 	browser.BindFuncReturn("browser_AppVersion", func(_ ...string) string {
 		return Version
 	})

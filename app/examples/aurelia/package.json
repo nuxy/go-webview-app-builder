@@ -2,7 +2,7 @@
   "name": "webview-app",
   "version": "0.0.1",
   "description": "WebView App (Aurelia 2 framework example)",
-  "main": "dist/bundle.js",
+  "main": "dist/main-bundle.js",
   "scripts": {
     "build": "webpack",
     "lint": "eslint . --ext .ts,.tsx",
@@ -29,8 +29,7 @@
   "dependencies": {
     "@aurelia/router": "2.0.0-beta.14",
     "aurelia": "2.0.0-beta.14",
-    "slot-machine-gen": "latest",
-    "webform-toolkit": "latest"
+    "slot-machine-gen": "latest"
   },
   "devDependencies": {
     "@aurelia/webpack-loader": "2.0.0-beta.14",

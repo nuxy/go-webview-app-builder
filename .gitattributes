@@ -3,4 +3,4 @@
 *.html -linguist-detectable
 *.scss -linguist-detectable
 
-app/src/webview/* linguist-detectable
+app/aurelia/src/webview/* linguist-detectable
