@@ -28,7 +28,7 @@ install:
 	go install -x $(GOFLAGS) -ldflags $(LDFLAGS) $(PACKAGE)
 
 webview-app-build:
-	npm run build --prefix "app" $(NODE_ENV)
+	npm run build --prefix "app/examples/aurelia" $(NODE_ENV)
 
 webview-app-install:
-	npm install --prefix "app" $(NODE_ENV)
+	npm install --prefix "app/examples/aurelia" $(NODE_ENV)
