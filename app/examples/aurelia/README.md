@@ -18,7 +18,7 @@ Launch a development server instance accessible at [http://localhost:9000](http:
 
     $ npm run start
 
-Run [Jest](https://jestjs.io) integration tests ([JS libraries only](https://github.com/nuxy/go-webview-app-builder/tree/develop/app/src/webview)):
+Run [Jest](https://jestjs.io) integration tests ([JS libraries only](https://github.com/nuxy/go-webview-app-builder/tree/develop/app/examples/aurelia/src/webview)):
 
     $ npm run test
 
