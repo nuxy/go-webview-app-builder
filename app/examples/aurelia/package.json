@@ -32,8 +32,8 @@
     "slot-machine-gen": "latest"
   },
   "devDependencies": {
-    "@aurelia/webpack-loader": "2.0.0-beta.14",
     "@aurelia/ts-jest": "2.0.0-beta.14",
+    "@aurelia/webpack-loader": "2.0.0-beta.14",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
@@ -43,8 +43,8 @@
     "eslint": "^8.57.0",
     "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "jest-transform-stub": "^2.0.0",
     "mini-css-extract-plugin": "^1.6.2",
     "node-fetch": "^3.3.2",
@@ -59,6 +59,6 @@
     "webpack": "^5.90.3",
     "webpack-bundle-analyzer": "^4.9.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^5.2.4"
   }
 }
