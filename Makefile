@@ -1,4 +1,4 @@
-VERSION = 0.0.2
+VERSION = 0.1.0
 PACKAGE = github.com/nuxy/go-webview-app-builder
 DEBUG   = $(shell echo $(MAKEFLAGS) | grep -q -- "--debug" && echo true || echo false)
 LDFLAGS = "-X main.Version=$(VERSION) -X main.DevTools=$(DEBUG)"
