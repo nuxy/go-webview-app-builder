@@ -42,7 +42,7 @@ func main() {
 	browser := lib.NewBrowser(htmlDoc, settings)
 
 	// Define browser WebView global bindings.
-	// @see app/examples/aurelia/webview/bindings.d.ts
+	// @see app/webview/bindings.d.ts
 	browser.BindFuncReturn("browser_AppVersion", func(_ ...string) string {
 		return Version
 	})
