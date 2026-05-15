@@ -1,4 +1,4 @@
-# WebView App Builder [![](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/nuxy/go-webview-app-builder) [![](https://img.shields.io/github/v/release/nuxy/go-webview-app-builder)](https://github.com/nuxy/go-webview-app-builder/releases)
+# WebView App Builder [![](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/nuxy/go-webview-app-builder) [![](https://img.shields.io/github/v/release/nuxy/go-webview-app-builder)](https://github.com/nuxy/go-webview-app-builder/releases) [![NO AI](https://raw.githubusercontent.com/nuxy/no-ai-badge/master/badge.svg)](https://github.com/nuxy/no-ai-badge)
 
 Create a JavaScript [single-page application](https://en.wikipedia.org/wiki/Single-page_application) (SPA) in a [WebView](https://en.wikipedia.org/wiki/WebView)
 
