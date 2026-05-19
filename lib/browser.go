@@ -66,6 +66,11 @@ func (browser *Browser) Close() {
 	browser.WebView.Terminate()
 }
 
+// Set the WebView window title.
+func (browser *Browser) SetTitle(v string) {
+	browser.WebView.SetTitle(v)
+}
+
 // Bind JavaScript function to DOM Window (no return, void).
 func (browser *Browser) BindFuncVoid(funcName string, callback BrowserFuncVoid) {
 	c := func(arg ...string) {

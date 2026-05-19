@@ -61,6 +61,7 @@ func main() {
 
 	browser.BindFuncVoid("browser_Navigate", func(arg ...string) {
 		storage.Set("routeId", arg[0])
+		browser.SetTitle(arg[1])
 	})
 
 	browser.BindFuncVoid("browser_OpenExtBrowser", func(arg ...string) {
