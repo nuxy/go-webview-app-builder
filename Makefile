@@ -31,4 +31,4 @@ webview-app-build:
 	npm run build --prefix "app/examples/aurelia" $(NODE_ENV)
 
 webview-app-install:
-	npm install --prefix "app/examples/aurelia" $(NODE_ENV)
+	npm install --prefix "app/examples/aurelia"
