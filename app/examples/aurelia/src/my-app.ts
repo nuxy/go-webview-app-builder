@@ -50,7 +50,7 @@ export class MyApp implements IRouteableComponent {
   }
 
   bound() {
-    this.ea.subscribe('au:router:navigation-start', async ({navigation}) => {
+    this.ea.subscribe('au:router:navigation-end', async ({navigation}) => {
       webViewBindExists('browser_Navigate')
         && await window.browser_Navigate(
           navigation?.instruction,
